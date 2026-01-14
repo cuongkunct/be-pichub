@@ -5,11 +5,11 @@ import {
 } from "../common/contant/app.contant.js";
 
 export const tokenService = {
-  createTokens(userId) {
-    const accessToken = jwt.sign({ userId: userId }, ACCESS_TOKEN_SECRET, {
+  createTokens(_id) {
+    const accessToken = jwt.sign({ id: _id }, ACCESS_TOKEN_SECRET, {
       expiresIn: "30m",
     });
-    const refreshToken = jwt.sign({ userId: userId }, REFRESH_TOKEN_SECRET, {
+    const refreshToken = jwt.sign({ id: _id }, REFRESH_TOKEN_SECRET, {
       expiresIn: "1d",
     });
 
