@@ -7,13 +7,6 @@ export const userController = {
     const response = responseSuccess(result, `Upload avatar successfully`);
     res.status(response.statusCode).json(response);
   },
-
-  async findAll(req, res) {
-    const result = await userService.findAll(req);
-    const response = responseSuccess(result, `Get all users successfully`);
-    res.status(response.statusCode).json(response);
-  },
-
   async update(req, res) {
     const result = await userService.update(req);
     const response = responseSuccess(result, `Update user successfully`);
@@ -22,6 +15,19 @@ export const userController = {
   async findOne(req, res, next) {
     const result = await userService.findOne(req);
     const response = responseSuccess(result, `Get user profile successfully`);
+    res.status(response.statusCode).json(response);
+  },
+  async getUserImages(req, res, next) {
+    const result = await userService.getUserImages(req);
+    const response = responseSuccess(result, `Get user images successfully`);
+    res.status(response.statusCode).json(response);
+  },
+  async getUserSaveImages(req, res, next) {
+    const result = await userService.getUserSaveImages(req);
+    const response = responseSuccess(
+      result,
+      `Get user save images successfully`
+    );
     res.status(response.statusCode).json(response);
   },
 };

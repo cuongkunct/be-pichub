@@ -14,5 +14,10 @@ userRouter.post(
 
 userRouter.post("/edit-profile", authMiddleware, userController.update);
 userRouter.post("/profile", authMiddleware, userController.findOne);
-
+userRouter.get("/images", authMiddleware, userController.getUserImages);
+userRouter.get(
+  "/saved-images",
+  authMiddleware,
+  userController.getUserSaveImages
+);
 export default userRouter;

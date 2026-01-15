@@ -2,6 +2,8 @@ import { FOLDER_IMAGE } from "../../common/contant/app.contant.js";
 import { BadRequestException } from "../../common/helper/exception-helper.js";
 import userModel from "../../models/user.model.js";
 import cloudinary from "../../common/cloudinary/init.cloudinary.js";
+import imageModel from "../../models/image.model.js";
+import savedModel from "../../models/saved.model.js";
 export const userService = {
   async create(req) {
     console.log(req.body);
@@ -67,5 +69,19 @@ export const userService = {
     const userObject = users.toObject();
     delete userObject.password;
     return userObject;
+  },
+
+  async getUserImages(req) {
+    const userId = req.user.id;
+    const images = await imageModel.find({ user: userId }).populate("user");
+    return images;
+  },
+  async getUserSaveImages(req) {
+    const userId = req.user.id;
+    const images = await savedModel
+      .find({ user: userId })
+      .populate("user")
+      .populate("image");
+    return images;
   },
 };
