@@ -4,9 +4,9 @@ import userModel from "../../models/user.model.js";
 import cloudinary from "../../common/cloudinary/init.cloudinary.js";
 import imageModel from "../../models/image.model.js";
 import savedModel from "../../models/saved.model.js";
+import bcrypt from "bcrypt";
 export const userService = {
   async create(req) {
-    console.log(req.body);
     if (!req.file) {
       throw new BadRequestException("Missing required fields");
     }
@@ -21,7 +21,7 @@ export const userService = {
               return reject(error);
             }
             return resolve(uploadResult);
-          }
+          },
         )
         .end(req.file.buffer);
     });
@@ -32,7 +32,7 @@ export const userService = {
         $set: {
           avatar: uploadResult.secure_url,
         },
-      }
+      },
     );
     if (req.user.avatar) {
       cloudinary.uploader.destroy(req.user.avatar);
@@ -46,7 +46,7 @@ export const userService = {
 
   async update(req) {
     const { password, fullName, age } = req.body;
-    console.log({ password, fullName, age });
+
     if (!password || !fullName || !age) {
       throw new BadRequestException("Missing required fields");
     }
@@ -59,7 +59,7 @@ export const userService = {
           fullName,
           age,
         },
-      }
+      },
     );
     return true;
   },

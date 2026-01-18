@@ -9,7 +9,7 @@ const authMiddleware = async (req, res, next) => {
     throw new UnauthorizedException("Unauthorized");
   }
   const user = tokenService.verifyAccessToken(token);
-  console.log(user);
+
   if (!user) {
     throw new UnauthorizedException("Unauthorized");
   }

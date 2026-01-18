@@ -8,7 +8,6 @@ import {
 
 export const authService = {
   async userLogin(req) {
-    console.log(req.body);
     const { email, password } = req.body;
     const user = await userModel.findOne({ email });
     if (!user) {

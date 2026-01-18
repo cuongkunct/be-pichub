@@ -1,617 +1,664 @@
 {
-	"info": {
-		"_postman_id": "1b82a631-7640-4d82-be26-8c7052bde8aa",
-		"name": "Pichub-Be",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "47735092",
-		"_collection_link": "https://cuongkun-ct-2125782.postman.co/workspace/Cuong-Van's-Workspace~2377409a-b650-441d-8974-09ca1f34b872/collection/47735092-1b82a631-7640-4d82-be26-8c7052bde8aa?action=share&source=collection_link&creator=47735092"
-	},
-	"item": [
-		{
-			"name": "Auth",
-			"item": [
-				{
-					"name": "register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"mentor.qa7@gmail.com\",\r\n     \"password\": \"123456\",\r\n      \"fullName\": \"Tran van Cuong\",\r\n       \"age\": 15,\r\n      \r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/auth/register",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"auth",
-								"register"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "login",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const {data} = pm.response.json()\r",
-									"\r",
-									"\r",
-									"pm.globals.set(\"pichupAccessToken\", data.accessToken)\r",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {},
-								"requests": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"mentor.qa7@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/auth/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "User",
-			"item": [
-				{
-					"name": "upload-avatar",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": [
-								{
-									"key": "avatar",
-									"type": "file",
-									"src": "/C:/Users/mento/Downloads/blog-banner.png"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/user/upload-avatar",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"user",
-								"upload-avatar"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "edit-profile",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\r\n{\r\n    \"password\": \"123456\",\r\n    \"fullName\": \"Tran van Cuong\",\r\n    \"age\": 15\r\n}\r\n\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/user/edit-profile",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"user",
-								"edit-profile"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get-profile",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/user/profile",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"user",
-								"profile"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get-user-save-image",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/user/saved-images",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"user",
-								"saved-images"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get-user-image Copy",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/user/images",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"user",
-								"images"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Image",
-			"item": [
-				{
-					"name": "create-post",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/image/create-post",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"image",
-								"create-post"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get-all-images",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/image/images-search?key=fp",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"image",
-								"images-search"
-							],
-							"query": [
-								{
-									"key": "key",
-									"value": "fp"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "image-details",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "//get image details and send it to url as prams",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/image/6968ea16b047bca43a86acf7",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"image",
-								"6968ea16b047bca43a86acf7"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete-image",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "//get image details and send it to url as prams",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/image/remove/6968ea16b047bca43a86acf7",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"image",
-								"remove",
-								"6968ea16b047bca43a86acf7"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Comment",
-			"item": [
-				{
-					"name": "comment",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\": \"69666f8c244bd2caf82aa164\",\r\n    \"image\":\"6968ea16b047bca43a86acf7\",\r\n    \"content\": \"Hình bình thường\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/image/6968ea16b047bca43a86acf7/create-comment",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"image",
-								"6968ea16b047bca43a86acf7",
-								"create-comment"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "get-all-comment",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"user\": \"69666f8c244bd2caf82aa164\",\r\n    \"image\":\"6968ea16b047bca43a86acf7\",\r\n    \"content\": \"Hình bình thường\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/image/comments/6968ea16b047bca43a86acf7",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"image",
-								"comments",
-								"6968ea16b047bca43a86acf7"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "save - image",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{pichupAccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:3069/api/image/save/6968ea16b047bca43a86acf7",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3069",
-							"path": [
-								"api",
-								"image",
-								"save",
-								"6968ea16b047bca43a86acf7"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	]
+  "info": {
+    "_postman_id": "1b82a631-7640-4d82-be26-8c7052bde8aa",
+    "name": "Pichub-Be",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47735092",
+    "_collection_link": "https://go.postman.co/collection/47735092-1b82a631-7640-4d82-be26-8c7052bde8aa?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"mentor.qa7@gmail.com\",\r\n     \"password\": \"123456\",\r\n      \"fullName\": \"Tran van Cuong\",\r\n       \"age\": 15,\r\n      \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const {data} = pm.response.json()\r",
+                  "\r",
+                  "\r",
+                  "pm.globals.set(\"pichupAccessToken\", data.accessToken)\r",
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"mentor.qa7@gmail.com\",\r\n    \"password\": \"123456\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "upload-avatar",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "avatar",
+                  "type": "file",
+                  "uuid": "0cd74527-ce0f-49de-8689-3ccd789192ec",
+                  "src": "/C:/Users/mento/Downloads/blog-banner.png"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/user/upload-avatar",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "user",
+                "upload-avatar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edit-profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "\r\n{\r\n    \"password\": \"123456\",\r\n    \"fullName\": \"Tran van Cuong\",\r\n    \"age\": 15\r\n}\r\n\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/user/edit-profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "user",
+                "edit-profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-profile",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/user/profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "user",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-user-save-image",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/user/saved-images",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "user",
+                "saved-images"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "user/images",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/user/images",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "user",
+                "images"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Image",
+      "item": [
+        {
+          "name": "create-post",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/image/create-post",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "create-post"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-images-keySearch",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/image/images-search?key=fp",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "images-search"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "fp"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-images",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/image/images-search?key=fp",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "images-search"
+              ],
+              "query": [
+                {
+                  "key": "key",
+                  "value": "fp"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "image-details",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "//get image details and send it to url as prams",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/image/6968ea16b047bca43a86acf7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "6968ea16b047bca43a86acf7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete-image",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "//get image details and send it to url as prams",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/image/remove/6968ea16b047bca43a86acf7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "remove",
+                "6968ea16b047bca43a86acf7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "item": [
+        {
+          "name": "comment",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user\": \"69666f8c244bd2caf82aa164\",\r\n    \"image\":\"6968ea16b047bca43a86acf7\",\r\n    \"content\": \"Hình bình thường\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/image/6968e80b7fbe42d41dc4a287/create-comment",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "6968e80b7fbe42d41dc4a287",
+                "create-comment"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "get-all-comment",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"user\": \"69666f8c244bd2caf82aa164\",\r\n    \"image\":\"6968ea16b047bca43a86acf7\",\r\n    \"content\": \"Hình bình thường\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/image/comments/6968ea16b047bca43a86acf7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "comments",
+                "6968ea16b047bca43a86acf7"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "save - image",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{pichupAccessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3069/api/image/save/6968ea16b047bca43a86acf7",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3069",
+              "path": [
+                "api",
+                "image",
+                "save",
+                "6968ea16b047bca43a86acf7"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
 }

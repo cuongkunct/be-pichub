@@ -26,7 +26,7 @@ export const userController = {
     const result = await userService.getUserSaveImages(req);
     const response = responseSuccess(
       result,
-      `Get user save images successfully`
+      `Get user save images successfully`,
     );
     res.status(response.statusCode).json(response);
   },

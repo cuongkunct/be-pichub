@@ -22,11 +22,11 @@ export const imageService = {
               return reject(error);
             }
             return resolve(uploadResult);
-          }
+          },
         )
         .end(req.file.buffer);
     });
-    console.log(" uploadResult: ", uploadResult);
+
     const image = new imageModel({
       fileName: fileName,
       url: uploadResult.secure_url,
@@ -50,6 +50,7 @@ export const imageService = {
   },
   async saveImage(req) {
     const id = req.params.id;
+
     const image = await savedModel.find({
       image: id,
       user: req.user.id,
