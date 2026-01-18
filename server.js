@@ -4,20 +4,21 @@ import dotenv from "dotenv";
 import rootRouter from "./src/routers/root.router.js";
 import { errorMiddleware } from "./src/common/helper/error.helper.js";
 import connectDB from "./src/common/mongoodb/database.js";
+import { PORT } from "./src/common/contant/app.contant.js";
 
 dotenv.config();
 
 const app = express();
 
-const PORT = 3069;
+const PORT = PORT;
 
 // Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: "http://localhost:3000",
-  })
+    origin: "*",
+  }),
 );
 connectDB();
 // Routes
